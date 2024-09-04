@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Audio Recorder Test</title>
-    <!-- 로컬에서 다운로드한 Recorder.js 파일을 참조 -->
-    <script src="recorder.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/recorder-js@1.0.0/dist/recorder.min.js"></script>
 </head>
 <body>
 
@@ -20,7 +19,6 @@ document.getElementById('startRecording').addEventListener('click', async () => 
     try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 
-        // Recorder 인스턴스 생성 및 초기화
         recorder = new Recorder(audioContext, {
             ondata: (event) => {
                 audioChunks.push(event);
@@ -31,7 +29,6 @@ document.getElementById('startRecording').addEventListener('click', async () => 
         recorder.start();
         console.log('Recording started');
 
-        // 5초 후 녹음 중지
         setTimeout(() => {
             recorder.stop();
             console.log('Recording stopped');
